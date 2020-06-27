@@ -58,4 +58,63 @@ export const styles = StyleSheet.create({
   price: {color: 'yellow'},
   size: {color: 'white'},
   date: {color: 'white'},
+  main_view: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
+  safe_area: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  spacer: {
+    width: width,
+    height: 0.5,
+    backgroundColor: 'rgb(199,199,204)',
+  },
+  button_title: {
+    textAlign: 'center',
+    marginTop: 13,
+    marginBottom: 13,
+    fontSize: 23,
+    color: 'rgb(10,132,255)',
+  },
+  price_button: {
+    backgroundColor: 'white',
+    borderTopRightRadius: 13,
+    borderTopLeftRadius: 13,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  size_button: {
+    backgroundColor: 'white',
+
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderBottomLeftRadius: 13,
+    borderBottomRightRadius: 13,
+  },
+  return_button: {
+    marginTop: 13,
+    backgroundColor: 'white',
+    borderRadius: 13,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  id_button: {
+    backgroundColor: 'white',
+
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modal: {
+    justifyContent: 'flex-end',
+    marginBottom: 0,
+    alignItems: 'center',
+  },
+  modal_contianer: {
+    width: 0.97 * width,
+    borderTopLeftRadius: 13,
+    borderTopRightRadius: 13,
+  },
 });
