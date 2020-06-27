@@ -60,13 +60,13 @@ const Home: React.FC<Props> = ({navigation}) => {
         .then((response) => response.json())
         .then((result) => {
           console.log(result, 'resultresult');
-          if (result) {
+          if (result && result.length === 0) {
+            setDataReachedEnd(true);
+          } else {
             const tmpl = GettingDataReady(result);
             page > 1 && dataSection
               ? setDataSection([...dataSection, ...tmpl])
               : setDataSection(tmpl);
-          } else {
-            setDataReachedEnd(true);
           }
         });
       setLoading(false);
@@ -74,26 +74,16 @@ const Home: React.FC<Props> = ({navigation}) => {
       setLoading(false);
     }
   };
+
   const onEndReached = () => {
     setLoading(true);
-
     setPage(page + 1);
   };
 
   return (
-    <View
-      style={{
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column',
-      }}>
+    <View style={styles.main_view}>
       <StatusBar barStyle="dark-content" />
-
-      <SafeAreaView
-        style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
+      <SafeAreaView style={styles.safe_area}>
         <View style={loading ? styles.container_on_loading : styles.container}>
           {dataSection ? (
             <SectionList
