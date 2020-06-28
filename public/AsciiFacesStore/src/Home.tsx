@@ -1,3 +1,6 @@
+/**
+ * A component for rendering the list of Ascii faces.
+ */
 import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
@@ -22,23 +25,40 @@ interface Props {
 }
 
 const Home: React.FC<Props> = ({navigation}) => {
+  //  It makes the sorting modal visible.
   const [sortModalVisible, setSortModalVisible] = useState<boolean>(false);
+  // An useState for defining the type of sorting.
   const [sortType, setSortType] = useState<sortTypes>(sortTypes.size);
+  // A boolean for a time that data reaches the end. for showing the 'end of the category' message.
   const [dataReachedEnd, setDataReachedEnd] = useState<boolean>(false);
+  // A boolean for showing the loading animation when the new data are coming from the server.
   const [loading, setLoading] = useState<boolean>(true);
+  // Our modified data for showing in the sectionList is this.
   const [dataSection, setDataSection] = useState<listItem[] | null>();
+  // We use it fo pagination.
   const [page, setPage] = useState<number>(1);
 
+  /**
+   * A listener for detecting the changes in the sorting of the list.
+   */
   useEffect(() => {
     setSortModalVisible(false);
     setDataSection(null);
     page === 1 ? handlingData() : setPage(1);
   }, [sortType]);
 
+  /**
+   * By scrolling the list, SectionList adds a value of 1 to the page's value,
+   * By changing the value of page, handlingData will be called.
+   */
   useEffect(() => {
     handlingData();
   }, [page]);
 
+  /**
+   * A custom hook for customizing the header. more info at @link https://reactnavigation.org/docs/header-buttons.
+   * By changing the navigation or sortType, header contents may be affected.
+   */
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -54,15 +74,20 @@ const Home: React.FC<Props> = ({navigation}) => {
     });
   }, [navigation, sortType]);
 
+  /**
+   * An async function for fetching data from the server
+   */
   const handlingData = async () => {
     try {
       await fetch(url + `/products?_sort=${sortType}&_page=${page}&_limit=100`)
         .then((response) => response.json())
         .then((result) => {
-          console.log(result, 'resultresult');
+          // Checks resule from server has a value or not
           if (result && result.length === 0) {
+            //If length of result is equal zero, means that data reached to end
             setDataReachedEnd(true);
           } else {
+            // Else, we create an array and according to 'page' value set a new value to 'dataSection', or merge the new one with the past one
             const tmpl = GettingDataReady(result);
             page > 1 && dataSection
               ? setDataSection([...dataSection, ...tmpl])
@@ -74,12 +99,19 @@ const Home: React.FC<Props> = ({navigation}) => {
       setLoading(false);
     }
   };
-
+  /**
+   * A function that will be called whenever 'SectionList' reaches to end.
+   */
   const onEndReached = () => {
     setLoading(true);
     setPage(page + 1);
   };
-
+  /**
+   * According to readMe file included in the test file:
+   * after every 20 products, we need to insert an advertisement from one of our sponsors.
+   * The best interface that can handle this task correctly is SectionList. @link https://reactnative.dev/docs/sectionlist.
+   * It can handle ads between products correctly.
+   */
   return (
     <View style={styles.main_view}>
       <StatusBar barStyle="dark-content" />
