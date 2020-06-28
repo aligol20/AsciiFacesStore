@@ -1,3 +1,6 @@
+/**
+ * A modal for selecting the sorting type.
+ */
 import React from 'react';
 import {View, TouchableOpacity, Text, Dimensions} from 'react-native';
 import Modal from 'react-native-modal';
@@ -11,6 +14,12 @@ interface Props {
   setSortType(sortType: sortTypes): void;
   closeModal(): void;
 }
+/**
+ * With this modal user can select its desire sort type.
+ * @param modalVisible - A boolean for making the modal visible or not.
+ * @param setSortType - A callback for passing the selected sort type to 'Home.tsx'.
+ * @param closeModal - A callback for closing the modal.
+ */
 const SortModal: React.FC<Props> = ({
   modalVisible,
   setSortType,
@@ -42,7 +51,7 @@ const SortModal: React.FC<Props> = ({
           <Text style={styles.button_title}>{'Size'}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.return_button} onPress={closeModal}>
-          <Text style={styles.button_title}>{'Return'}</Text>
+          <Text style={styles.button_title}>{'Cancel'}</Text>
         </TouchableOpacity>
       </View>
     </Modal>
