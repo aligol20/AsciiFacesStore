@@ -1,6 +1,13 @@
+/**
+ * For making navigation between screens possible,
+ * we should create a component like follow:
+ * more info @link https://reactnavigation.org/docs/hello-react-navigation
+ */
+
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import Home from './Home';
+import {styles} from './Styles';
 const Stack = createStackNavigator();
 
 const HomeRoute = () => {
@@ -12,10 +19,8 @@ const HomeRoute = () => {
         options={({navigation, route}) => ({
           headerShown: true,
           headerTitle: 'AsciiFacesStore',
-          headerTitleStyle: {
-            color: 'white',
-          },
-          headerStyle: {backgroundColor: '#20B87B'},
+          headerTitleStyle: styles.header_color,
+          headerStyle: styles.header_background,
         })}
       />
     </Stack.Navigator>
