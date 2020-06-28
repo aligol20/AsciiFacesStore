@@ -11,7 +11,7 @@ import {
   View,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import EndOfCategory from './EndOfCategory';
+import EndOfCatalogue from './EndOfCatalogue';
 import GettingDataReady from './functions/GettingDataReady';
 import RenderAds from './RenderAds';
 import RenderItem from './RenderItem';
@@ -29,10 +29,10 @@ const Home: React.FC<Props> = ({navigation}) => {
   const [sortModalVisible, setSortModalVisible] = useState<boolean>(false);
   // An useState for defining the type of sorting.
   const [sortType, setSortType] = useState<sortTypes>(sortTypes.size);
-  // A boolean for a time that data reaches the end. for showing the 'end of the category' message.
+  // A boolean for a time that data reaches the end. for showing the 'end of the catalogue' message.
   const [dataReachedEnd, setDataReachedEnd] = useState<boolean>(false);
   // A boolean for showing the loading animation when the new data are coming from the server.
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   // Our modified data for showing in the sectionList is this.
   const [dataSection, setDataSection] = useState<listItem[] | null>();
   // We use it fo pagination.
@@ -123,7 +123,7 @@ const Home: React.FC<Props> = ({navigation}) => {
               keyExtractor={(index) => index.toString()}
               onEndReached={onEndReached}
               ListFooterComponent={() => (
-                <>{dataReachedEnd && <EndOfCategory />}</>
+                <>{dataReachedEnd && <EndOfCatalogue />}</>
               )}
               onEndReachedThreshold={1}
               renderItem={RenderItem}

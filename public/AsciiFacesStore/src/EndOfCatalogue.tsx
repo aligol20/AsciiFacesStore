@@ -6,13 +6,13 @@ import {View, Text} from 'react-native';
 import {styles} from './Styles';
 
 /**
- * Simple function that returns 'end of category' message
+ * Simple function that returns '~ end of catalogue ~' message
  */
-const EndOfCategory = () => {
+const EndOfCatalogue = () => {
   return (
     <View style={styles.end_message}>
-      <Text>{'end of category'}</Text>
+      <Text>{'~ end of catalogue ~'}</Text>
     </View>
   );
 };
-export default EndOfCategory;
+export default EndOfCatalogue;
