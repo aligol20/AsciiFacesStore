@@ -1,3 +1,7 @@
+/**
+ * For making the code more cleaner I used the following.
+ */
+
 export interface listItem {
   title: string;
   data: {id: string; size: number; price: number}[][];
