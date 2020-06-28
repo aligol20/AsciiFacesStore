@@ -1,11 +1,7 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
+ * The app starts from here.
+ * I used ReactNavigation as a navigator.
+ * For more info visit @link https://reactnavigation.org/docs/getting-started
  */
 
 import {NavigationContainer} from '@react-navigation/native';
