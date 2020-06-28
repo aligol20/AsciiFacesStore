@@ -2,11 +2,10 @@
  * Component for rendering the 20 AsciiFaces as a grid.
  */
 import React from 'react';
-import {SectionListRenderItemInfo, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import FormatDate from './functions/FormatDate';
 import FormatPrice from './functions/FormatPrice';
 import {styles} from './Styles';
-import {listItem} from './Types';
 
 /**
  * For rendering the every section before ads,
@@ -20,11 +19,12 @@ import {listItem} from './Types';
  */
 
 const RenderItem = (item: any) => {
+  console.log(item, 'item ');
   return (
     <View style={styles.item_container}>
       {item &&
         item.item &&
-        item.map((x: any) => (
+        item.item.map((x: any) => (
           <View key={x.id} style={styles.item_organizer}>
             <Text style={[styles.face, {fontSize: x.size}]}>{x.face}</Text>
             <Text style={styles.price}>{FormatPrice(x.price)}</Text>
