@@ -1,5 +1,5 @@
 /**
- * A message for when our list reaching end.
+ * A message for the time our list reaching end.
  */
 import React from 'react';
 import {View, Text} from 'react-native';
