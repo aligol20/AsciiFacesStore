@@ -1,3 +1,6 @@
+/**
+ * All the app styles can be found here.
+ */
 import {StyleSheet, Dimensions} from 'react-native';
 
 const {width} = Dimensions.get('screen');
@@ -117,4 +120,7 @@ export const styles = StyleSheet.create({
     borderTopLeftRadius: 13,
     borderTopRightRadius: 13,
   },
+  end_message: {width: '100%', height: 40},
+  header_color: {color: 'white'},
+  header_background: {backgroundColor: '#20B87B'},
 });
