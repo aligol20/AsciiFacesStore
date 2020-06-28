@@ -9,8 +9,9 @@ import {
   StatusBar,
   Text,
   View,
+  TouchableOpacity,
+  Switch,
 } from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import EndOfCatalogue from './EndOfCatalogue';
 import GettingDataReady from './functions/GettingDataReady';
 import RenderAds from './RenderAds';
@@ -35,8 +36,11 @@ const Home: React.FC<Props> = ({navigation}) => {
   const [loading, setLoading] = useState<boolean>(false);
   // Our modified data for showing in the sectionList is this.
   const [dataSection, setDataSection] = useState<listItem[] | null>();
-  // We use it fo pagination.
+  // We use it for pagination.
   const [page, setPage] = useState<number>(1);
+
+  // We use it for making the tile as a same size.
+  const [realSize, setRealSize] = useState<boolean>(true);
 
   /**
    * A listener for detecting the changes in the sorting of the list.
@@ -61,6 +65,7 @@ const Home: React.FC<Props> = ({navigation}) => {
    */
   React.useLayoutEffect(() => {
     navigation.setOptions({
+      //Header right for sorting button
       headerRight: () => (
         <TouchableOpacity
           style={styles.header_right_button}
@@ -71,8 +76,15 @@ const Home: React.FC<Props> = ({navigation}) => {
           </Text>
         </TouchableOpacity>
       ),
+      //Header left for switch to real size
+      headerLeft: () => (
+        <View style={styles.switch_container}>
+          <Switch value={realSize} onValueChange={setRealSize} />
+          <Text style={styles.switch_title}>{'Real Size'}</Text>
+        </View>
+      ),
     });
-  }, [navigation, sortType]);
+  }, [navigation, sortType, realSize]);
 
   /**
    * An async function for fetching data from the server
@@ -114,7 +126,11 @@ const Home: React.FC<Props> = ({navigation}) => {
    */
   return (
     <View style={styles.main_view}>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar
+        barStyle="light-content"
+        translucent={true}
+        backgroundColor={'#336e7b'}
+      />
       <SafeAreaView style={styles.safe_area}>
         <View style={loading ? styles.container_on_loading : styles.container}>
           {dataSection ? (
@@ -126,7 +142,9 @@ const Home: React.FC<Props> = ({navigation}) => {
                 <>{dataReachedEnd && <EndOfCatalogue />}</>
               )}
               onEndReachedThreshold={1}
-              renderItem={RenderItem}
+              renderItem={({item}) => (
+                <RenderItem item={item} realSize={realSize} />
+              )}
               extraData={sortType}
               renderSectionFooter={({section: {title}}) => RenderAds(title)}
             />
