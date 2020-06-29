@@ -46,7 +46,7 @@ Android             |  iOS
 ##### 3. Install React-native dependencies
 - `cd public`
 - `cd AsciiFacesStore`
-- `npm start`
+- `npm install`
 - `cd ios`
 - `pod install`
 - `cd ..`
