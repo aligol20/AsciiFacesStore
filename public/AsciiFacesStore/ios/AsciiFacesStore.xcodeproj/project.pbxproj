@@ -194,7 +194,6 @@
 				276456C4042777637E09D45E /* Pods-AsciiFacesStore-tvOSTests.debug.xcconfig */,
 				817EDB390B37090EF0C3D513 /* Pods-AsciiFacesStore-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
