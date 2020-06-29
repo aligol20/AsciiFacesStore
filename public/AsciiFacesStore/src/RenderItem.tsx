@@ -34,7 +34,11 @@ const RenderItem: React.FC<Props> = ({item, realSize}) => {
             style={
               realSize ? styles.item_organizer : styles.item_organizer_same_size
             }>
-            <Text style={[styles.face, realSize && {fontSize: x.size}]}>
+            <Text
+              style={[
+                realSize ? styles.face : styles.face_same_size,
+                realSize && {fontSize: x.size},
+              ]}>
               {x.face}
             </Text>
             <View style={styles.space} />
