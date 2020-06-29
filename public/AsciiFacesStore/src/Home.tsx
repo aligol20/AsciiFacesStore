@@ -91,7 +91,7 @@ const Home: React.FC<Props> = ({navigation}) => {
    */
   const handlingData = async () => {
     try {
-      await fetch(url + `/products?_sort=${sortType}&_page=${page}&_limit=100`)
+      await fetch(url + `/products?_sort=${sortType}&_page=${page}&_limit=40`)
         .then((response) => response.json())
         .then((result) => {
           // Checks resule from server has a value or not
@@ -136,6 +136,7 @@ const Home: React.FC<Props> = ({navigation}) => {
           {dataSection ? (
             <SectionList
               sections={dataSection}
+              contentContainerStyle={{alignItems: 'center'}}
               keyExtractor={(index) => index.toString()}
               onEndReached={onEndReached}
               ListFooterComponent={() => (
