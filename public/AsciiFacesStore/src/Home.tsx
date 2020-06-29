@@ -136,7 +136,7 @@ const Home: React.FC<Props> = ({navigation}) => {
           {dataSection ? (
             <SectionList
               sections={dataSection}
-              contentContainerStyle={{alignItems: 'center'}}
+              contentContainerStyle={styles.content_container}
               keyExtractor={(index) => index.toString()}
               onEndReached={onEndReached}
               ListFooterComponent={() => (
