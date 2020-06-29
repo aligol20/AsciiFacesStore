@@ -11,7 +11,7 @@ import {styles} from './Styles';
 const EndOfCatalogue = () => {
   return (
     <View style={styles.end_message}>
-      <Text>{'~ end of catalogue ~'}</Text>
+      <Text style={styles.end_message_title}>{'~ end of catalogue ~'}</Text>
     </View>
   );
 };
