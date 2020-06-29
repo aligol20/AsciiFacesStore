@@ -56,7 +56,8 @@ Android             |  iOS
 - You should define the SDK directory for your app, for more info look at [local.properties](https://stackoverflow.com/questions/27620262/sdk-location-not-found-define-location-with-sdk-dir-in-the-local-properties-fil).
 
 - For installing on physical android device, make sure that 'ADB' works correctly, for checking 'ADB', connect your android device with USB cable to computer and run following code:
-- `adb devices`
+- `adb devices`.
+
 -**note**:  USB debugging mode of physical android device should be enabled. More info at [USB debugging](https://developer.android.com/studio/debug/dev-options):
 - `npx react-native run-android`
 - **Important**: To run the code on an android device, you should change the IP address in 'Url.ts'  file to your computer IP address.
