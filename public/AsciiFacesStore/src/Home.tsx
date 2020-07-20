@@ -20,7 +20,7 @@ import SortModal from './SortModal';
 import {styles} from './Styles';
 import {listItem, sortTypes} from './Types';
 import {url} from './Url';
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 interface Props {
   navigation: any;
 }
@@ -38,6 +38,8 @@ const Home: React.FC<Props> = ({navigation}) => {
   const [dataSection, setDataSection] = useState<listItem[] | null>();
   // We use it for pagination.
   const [page, setPage] = useState<number>(1);
+
+  //** */
 
   // We use it for making the tile as a same size.
   const [realSize, setRealSize] = useState<boolean>(true);
@@ -70,10 +72,7 @@ const Home: React.FC<Props> = ({navigation}) => {
         <TouchableOpacity
           style={styles.header_right_button}
           onPress={() => setSortModalVisible(true)}>
-          <Text style={styles.header_button_title}>
-            {'Sort by:'}
-            {sortType}
-          </Text>
+          <Icon name="gear" size={30} color="#ffffff" />
         </TouchableOpacity>
       ),
       //Header left for switch to real size
@@ -129,7 +128,7 @@ const Home: React.FC<Props> = ({navigation}) => {
       <StatusBar
         barStyle="light-content"
         translucent={true}
-        backgroundColor={'#336e7b'}
+        backgroundColor={'#545498'}
       />
       <SafeAreaView style={styles.safe_area}>
         <View style={loading ? styles.container_on_loading : styles.container}>
@@ -163,6 +162,7 @@ const Home: React.FC<Props> = ({navigation}) => {
         modalVisible={sortModalVisible}
         closeModal={() => setSortModalVisible(false)}
         setSortType={setSortType}
+        current={sortType}
       />
     </View>
   );

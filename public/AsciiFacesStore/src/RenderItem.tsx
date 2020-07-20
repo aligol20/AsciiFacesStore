@@ -1,12 +1,13 @@
 /**
  * Component for rendering the 20 AsciiFaces as a grid.
  */
-import React from 'react';
-import {Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {Text, View, Dimensions} from 'react-native';
 import FormatDate from './functions/FormatDate';
 import FormatPrice from './functions/FormatPrice';
 import {styles} from './Styles';
 import {item} from './Types';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 /**
  * For rendering the every section before ads,
@@ -24,6 +25,8 @@ interface Props {
   item: item[];
   realSize: boolean;
 }
+const {width} = Dimensions.get('screen');
+
 const RenderItem: React.FC<Props> = ({item, realSize}) => {
   return (
     <View style={styles.item_container}>
@@ -34,6 +37,8 @@ const RenderItem: React.FC<Props> = ({item, realSize}) => {
             style={
               realSize ? styles.item_organizer : styles.item_organizer_same_size
             }>
+            <Text style={styles.date}>{FormatDate(x.date)}</Text>
+
             <Text
               style={[
                 realSize ? styles.face : styles.face_same_size,
@@ -42,9 +47,21 @@ const RenderItem: React.FC<Props> = ({item, realSize}) => {
               {x.face}
             </Text>
             <View style={styles.space} />
-            <Text style={styles.price}>{'price:' + FormatPrice(x.price)}</Text>
-            <Text style={styles.size}>{'size:' + x.size}</Text>
-            <Text style={styles.date}>{FormatDate(x.date)}</Text>
+            <View style={styles.details_org}>
+              <Text style={styles.price_title}>
+                <Icon name="dollar" size={11} color="#707070" />
+
+                {'price:'}
+              </Text>
+              <Text style={styles.price}>{FormatPrice(x.price)}</Text>
+            </View>
+            <View style={styles.details_org}>
+              <Text style={styles.size_title}>
+                <Icon name="arrows-alt" size={11} color="#707070" />
+                {'size:'}
+              </Text>
+              <Text style={styles.size}>{x.size}</Text>
+            </View>
           </View>
         ))}
     </View>
